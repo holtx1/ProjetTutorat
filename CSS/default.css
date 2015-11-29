@@ -66,3 +66,9 @@ body {
 	color:#FFF;
 	padding:10px;
 }
+
+/* flo */
+
+#inscription-modal {
+	min-width: 300px;
+}

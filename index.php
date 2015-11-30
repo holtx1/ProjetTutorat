@@ -42,6 +42,7 @@
 						<ul id="navbar_menu_pc" class="menu">
 							<li id="menu_accueil" class="navbar_menu_item"><a href="#">Accueil</a></li>
 							<li id="menu_inscription" class="navbar_menu_item"><a href="#" data-reveal-id="inscription-modal">Inscription</a></li>
+              <li id="menu_connexion" class="navbar_menu_item"><a href="#" data-reveal-id="connexion-modal">Connexion</a></li>
 
               <div id="inscription-modal" class="reveal-modal tiny" data-reveal aria-labelledby="inscription" aria-hidden="true" role="dialog">
                 <!-- Page inscription here -->
@@ -84,14 +85,33 @@
                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
               </div>
 
-							<li id="menu_connexion" class="navbar_menu_item"><a href="#" data-reveal-id="connexion-modal">Connexion</a></li>
 
-              <div id="connexion-modal" class="reveal-modal" data-reveal aria-labelledby="connexion" aria-hidden="true" role="dialog">
+              <div id="connexion-modal" class="reveal-modal tiny" data-reveal aria-labelledby="connexion" aria-hidden="true" role="dialog">
                 <!-- Page connexion here -->
-
+                <h3>Connexion</h3>
+                <form action="index.php" method="post">
+                  <div class="row">
+                    <div class="small-12 columns">
+                      <label>Identifiant (Numéro étudiant)
+                        <input type="text" placeholder="" />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="small-12 columns">
+                      <label> Mot de passe
+                        <input type="password" placeholder="" />
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="small-12 small-centered text-center columns">
+                          <input class="button small secondary" type="submit" value="Valider" />
+                      </div>
+                  </div>
+                </form>
                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
               </div>
-
             </ul>
 					</div>
 				</div>

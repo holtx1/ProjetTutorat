@@ -1,0 +1,15 @@
+Deux repertoires : repertoire locale et repertoire distant !!!
+master = branch principale
+
+git pull                    // Récupérer les fichiers (sur la branch distante)
+git status                  // Donne les fichiers modifiés
+git commit -a               // Commit (sauvegarde) tous les fichiers retournés par git status
+git push origin nom_branch  // Push (envoyer) la branch locale (celle où on se trouve) à la branch distante (la créer si existe pas)
+git merge nom_branch        // Fusionne nom_branch dans la branch où on se situe
+git checkout nom_branch     // Se deplacer à la branch
+git checkout -b nom_branch  // Créer puis se deplacer sur la branch créé
+git branch nom_branch       // Créer une branch
+git branch -b nom_branch    // Supprimer la branch locale
+git push origin :nom_branch // Supprimer la branch distante (bien faire les deux suppression lorsque l'on supprime une branch)
+
+Réaliser un pull à chaque fois que l'on commence à travailler !!

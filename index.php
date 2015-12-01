@@ -49,7 +49,7 @@
                 <form action="index.php" method="post">
                   <div class="row">
                     <div class="small-12 columns">
-                      <label>Identifiant (Numéro étudiant)
+                      <label>Identifiant
                         <input type="text" placeholder="" />
                       </label>
                     </div>

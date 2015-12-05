@@ -47,7 +47,7 @@
                             <div id="inscription-modal" class="reveal-modal tiny" data-reveal aria-labelledby="inscription" aria-hidden="true" role="dialog">
                                 <!-- Page inscription here -->
                                 <h3>Inscription</h3>
-                                <form action="traitement.php" method="post">
+                                <form action="" method="post">
                                     <div class="row">
                                         <div class="small-12 columns">
                                             <label>Identifiant

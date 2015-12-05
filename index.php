@@ -47,32 +47,46 @@
                             <div id="inscription-modal" class="reveal-modal tiny" data-reveal aria-labelledby="inscription" aria-hidden="true" role="dialog">
                                 <!-- Page inscription here -->
                                 <h3>Inscription</h3>
-                                <form action="index.php" method="post">
+                                <form action="traitement.php" method="post">
                                     <div class="row">
                                         <div class="small-12 columns">
                                             <label>Identifiant
-                                                <input type="text" placeholder="" />
+                                                <input type="text" name="identifiant" placeholder="" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="small-12 columns">
+                                            <label>Nom
+                                                <input type="text" name="nom" placeholder="" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="small-12 columns">
+                                            <label>Prenom
+                                                <input type="text" name="prenom" placeholder="" />
                                             </label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="small-12 columns">
                                             <label> Email
-                                                <input type="email" placeholder="" />
+                                                <input type="email" name="email" placeholder="" />
                                             </label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="small-12 columns">
                                             <label> Mot de passe
-                                                <input type="password" placeholder="" />
+                                                <input type="password" name="pass" placeholder="" />
                                             </label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="small-12 columns">
                                             <label> Confirmation mot de passe
-                                                <input type="password" placeholder="" />
+                                                <input type="password" name="pass_verif" placeholder="" />
                                             </label>
                                         </div>
                                     </div>

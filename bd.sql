@@ -13,8 +13,7 @@ CREATE TABLE privileges (
 
 CREATE TABLE matiere (
   id_mat INT(4) PRIMARY KEY,
-  nom_mat VARCHAR(30),
-  ue VARCHAR(30)
+  nom_mat VARCHAR(30)
 );
 
 CREATE TABLE groupe (
@@ -44,4 +43,10 @@ CREATE TABLE needhelp (
   numero_etudiant INT(8) REFERENCES etudiant,
   id_mat INT(4) REFERENCES matiere,
   PRIMARY KEY(numero_etudiant, id_mat)
+);
+
+CREATE TABLE cours(
+  id_mat INT(4) REFERENCES matiere,
+  id_grp INT(4) REFERENCES groupe,
+  PRIMARY KEY(id_mat, id_grp)
 );

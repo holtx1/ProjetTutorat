@@ -51,7 +51,7 @@
                                 <h3>Inscription</h3>
                                 <span id="error1" style="display: none; color: red;">L'identifiant existe deja<br /></span>
                                 <span id="error2" style="display: none; color: red;">L'adresse email existe deja</span>
-                                <form data-abide action="" method="post">
+                                <form data-abide action="" method="post"> <!-- PATTERN PAS FAIT -->
                                     <div class="row">
                                         <div class="small-12 columns">
                                             <div class="name-field">
@@ -153,12 +153,34 @@
 </html>
 
 <?php
+$bdd = new PDO('mysql:host=localhost;dbname=tutoratbd;charset=utf8', 'root', '');
 
 if (!empty($_POST['submit_inscription'])) {
-    $bdd = new PDO('mysql:host=localhost;dbname=tutoratbd;charset=utf8', 'root', '');
-    // Recupere valeur
+
     $identifiant = $_POST['identifiant'];
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom']; // AJOUTER ICI HTMLSPECIAL ET COMPAGNIE POUR EVITER INJECTION SQL
     $email = $_POST['email'];
+    $pass = sha1($_POST['pass']);
+
+    if(formValideInscription($bdd,$identifiant,$email))
+    {
+        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email) VALUES(:identifiant, :pass, :nom, :prenom, :email)');
+        $req->execute(array(
+            'identifiant' => $identifiant,
+            'pass' => $pass,
+            'nom' => $nom,
+            'prenom' => $prenom,
+            'email' => $email
+        ));
+        echo "inscription valide";
+    } // pas besoin de else : deja gerer dans la fonction
+}
+
+
+function formValideInscription($bdd,$identifiant,$email){
+    $valide = true;
+
     //Requete
     $req_id = "SELECT count(*) AS Nbr_id FROM etudiant where numero_etudiant = '" . $identifiant . "'";
     $req_email = "SELECT count(*) AS Nbr_email FROM etudiant where email = '" . $email . "'";
@@ -168,13 +190,13 @@ if (!empty($_POST['submit_inscription'])) {
     $row_id = $reponse_id->fetch();
     $reponse_id->closeCursor();
 
-
     if ($row_id['Nbr_id'] > 0) {
-         ?>
-         <script>
-             $('#inscription-modal').foundation('reveal', 'open');
-             document.getElementById('error1').style.display = 'inline';
-         </script><?php
+        ?>
+        <script>
+            $('#inscription-modal').foundation('reveal', 'open');
+            document.getElementById('error1').style.display = 'inline';
+        </script><?php
+        $valide = false;
     }
 
     // Traitement disponibilite email
@@ -188,6 +210,8 @@ if (!empty($_POST['submit_inscription'])) {
             $('#inscription-modal').foundation('reveal', 'open');
             document.getElementById('error2').style.display = 'inline';
         </script><?php
+        $valide = false;
     }
+    return $valide;
 }
 ?>

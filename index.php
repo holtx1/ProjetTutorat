@@ -101,6 +101,18 @@
                                             <small class="error">Les mots de passe ne correspondent pas</small>
                                         </div>
                                     </div>
+																		<div class="row">
+																			<div class="small-12 columns">
+																				<label> Departement <small>required</small>
+																					<select name="formation">
+																					 <option value="GEII">Genie Electrique et Informatique</option>
+																					 <option value="INFO">Informatique</option>
+																					 <option value="MMI">Metiers du multimedia et de l'Internet</option>
+																					 <option value="RT">Reseaux et Telecommunication</option>
+																				 </select>
+																			 </label>
+																		 </div>
+																	 </div>
                                     <div class="row">
                                         <div class="small-12 small-centered text-center columns">
                                             <input class="button small secondary" type="submit" name="submit_inscription" value="Valider" />
@@ -153,7 +165,7 @@
 </html>
 
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=tutoratbd;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', '');
 
 if (!empty($_POST['submit_inscription'])) {
 

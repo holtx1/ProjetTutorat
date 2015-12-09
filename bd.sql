@@ -6,6 +6,12 @@ DROP TABLE groupe;
 DROP TABLE matiere;
 DROP TABLE privileges;*/
 
+/**
+NOT NULL ne fonctionne pas sur les "references" alors que sa fonctionne lorsque l'on modifie sur phpmyadmin
+THE FUCK ! Peut pas mettre non plus de valeur par defaut (marche sur phpmyadmin)
+Need serveur distant :D 
+**/
+
 CREATE TABLE privileges (
   id_priv INT(4) PRIMARY KEY AUTO_INCREMENT,
   nom_priv VARCHAR(30) NOT NULL
@@ -29,9 +35,9 @@ CREATE TABLE etudiant (
   prenom VARCHAR(30) NOT NULL,
   age INT(3),
   email VARCHAR(30) NOT NULL,
-  id_priv INT(4) REFERENCES privileges, // NOT NULL ne fonctionne pas ici alors que sa fonctionne lorsque l'on modifie sur phpmyadmin
-  id_grp INT(4) REFERENCES groupe       // THE FUCK ! Peut pas mettre non plus de valeur par defaut (marche sur phpmyadmin)
-);                                      // Need serveur distant :D
+  id_priv INT(4) REFERENCES privileges,
+  id_grp INT(4) REFERENCES groupe
+);                                      
 
 CREATE TABLE helper (
   numero_etudiant INT(8) REFERENCES etudiant,

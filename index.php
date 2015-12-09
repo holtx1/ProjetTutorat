@@ -104,7 +104,7 @@
                                     <div class="row">
                                         <div class="small-12 columns">
                                             <label> Departement <small>required</small>
-                                                <select name="formation" required>
+                                                <select name="formation" >
                                                     <option value="GEII">Genie Electrique et Informatique</option>
                                                     <option value="INFO">Informatique</option>
                                                     <option value="MMI">Metiers du multimedia et de l'Internet</option>
@@ -175,16 +175,30 @@ if (!empty($_POST['submit_inscription'])) {
     $prenom = $_POST['prenom']; // AJOUTER ICI HTMLSPECIAL ET COMPAGNIE POUR EVITER INJECTION SQL
     $email = $_POST['email'];
     $pass = sha1($_POST['pass']);
-
+	$departement= $_POST['formation'];
     if(formValideInscription($bdd,$identifiant,$email))
     {
-        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email) VALUES(:identifiant, :pass, :nom, :prenom, :email)');
-        $req->execute(array(
+		
+		//BETA//
+		$requete=$bdd->prepare("Select id_grp from groupe where annee=2 and formation=':departement'");
+		$requete->execute(array(':departement'=>$departement));
+		$resultat = $requete->fetchAll();
+		
+		echo $resultat;
+		
+		////
+
+        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email,id_grp) VALUES(:identifiant, :pass, :nom, :prenom, :email, :id_grp)');
+        
+		$req->execute(array(
             'identifiant' => $identifiant,
             'pass' => $pass,
             'nom' => $nom,
             'prenom' => $prenom,
-            'email' => $email
+            'email' => $email,
+			'id_grp' => $resultat
+
+			
         ));
         echo "inscription valide";
     } // pas besoin de else : deja gerer dans la fonction

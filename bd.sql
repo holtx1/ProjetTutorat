@@ -7,19 +7,19 @@ DROP TABLE matiere;
 DROP TABLE privileges;*/
 
 CREATE TABLE privileges (
-  id_priv INT(4) PRIMARY KEY,
+  id_priv INT(4) PRIMARY KEY AUTO_INCREMENT,
   nom_priv VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE matiere (
-  id_mat INT(4) PRIMARY KEY,
+  id_mat INT(4) PRIMARY KEY AUTO_INCREMENT,
   nom_mat VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE groupe (
-  id_grp INT(4) PRIMARY KEY,
+  id_grp INT(4) PRIMARY KEY AUTO_INCREMENT,
   filiere VARCHAR(30) NOT NULL,
-  annee INT(1) NOT NULL
+  annee INT NOT NULL NOT NULL
 );
 
 CREATE TABLE etudiant (
@@ -27,42 +27,37 @@ CREATE TABLE etudiant (
   mdp VARCHAR(25) NOT NULL,
   nom VARCHAR(30) NOT NULL,
   prenom VARCHAR(30) NOT NULL,
-  age INT(3) NOT NULL,
+  age INT(3),
   email VARCHAR(30) NOT NULL,
   id_priv INT(4) REFERENCES privileges,
   id_grp INT(4) REFERENCES groupe
-);
+);                                      
 
 CREATE TABLE helper (
   numero_etudiant INT(8) REFERENCES etudiant,
   id_mat INT(4) REFERENCES matiere,
-  commentare varchar(300),
   PRIMARY KEY(numero_etudiant, id_mat)
 );
 
 CREATE TABLE needhelp (
   numero_etudiant INT(8) REFERENCES etudiant,
   id_mat INT(4) REFERENCES matiere,
-  commentaire varchar(300),
   PRIMARY KEY(numero_etudiant, id_mat)
 );
 
-CREATE TABLE cours (
-  id_grp INT(4) REFERENCES groupe,
+CREATE TABLE cours(
   id_mat INT(4) REFERENCES matiere,
-  PRIMARY KEY(id_grp,id_mat)
+  id_grp INT(4) REFERENCES groupe,
+  PRIMARY KEY(id_mat, id_grp)
 );
 
-INSERT INTO groupe values
-  (0000,'INFO',1),
-  (0001,'INFO',2),
-  (0002,'RT',1),
-  (0003,'RT',2),
-  (0004,'MMI',1),
-  (0005,'MMI',2),
-  (0006,'GEII',1),
-  (0007,'GEII',2);
-
-INSERT INTO privileges values
-  (0000,'Administrateur'),
-  (0001,'Utilisateur');
+INSERT INTO privileges (nom_priv) VALUES ('user');
+INSERT INTO privileges (nom_priv) VALUES ('admin');
+INSERT INTO groupe (filiere,annee) VALUES ('GEI',1);
+INSERT INTO groupe (filiere,annee) VALUES ('Informatique',1);
+INSERT INTO groupe (filiere,annee) VALUES ('MMI',1);
+INSERT INTO groupe (filiere,annee) VALUES ('RT',1);
+INSERT INTO groupe (filiere,annee) VALUES ('GEI',2);
+INSERT INTO groupe (filiere,annee) VALUES ('Informatique',2);
+INSERT INTO groupe (filiere,annee) VALUES ('MMI',2);
+INSERT INTO groupe (filiere,annee) VALUES ('RT',2);

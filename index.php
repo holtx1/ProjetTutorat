@@ -173,7 +173,11 @@
 
 				<!-- debut footer -->
 				<div id="footer">
-					(c) 2015 Groupe tutorat - INF2A
+					(c) 2015 Groupe tutorat - INF2A. En partenariat avec:
+					<div id="logo_partenaire">
+
+					</div>
+
 				</div>
 				<!-- fin footer -->
 

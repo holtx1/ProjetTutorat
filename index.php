@@ -44,86 +44,86 @@
 						<ul id="navbar_menu_pc" class="menu">
 							<li id="menu_accueil" class="navbar_menu_item"><a href="#">Accueil</a></li>
 							<li id="menu_inscription" class="navbar_menu_item"><a href="#" data-reveal-id="inscription-modal">Inscription</a></li>
-
                             <li id="menu_connexion" class="navbar_menu_item"><a href="#" data-reveal-id="connexion-modal">Connexion</a></li>
+                        </ul>
+                    </div>
 
-
-                            <div id="inscription-modal" class="reveal-modal tiny" data-reveal aria-labelledby="inscription" aria-hidden="true" role="dialog">
-                                <!-- Page inscription here -->
-                                <h3>Inscription</h3>
-                                <span id="error1" style="display: none; color: red;">L'identifiant existe deja<br /></span>
-                                <span id="error2" style="display: none; color: red;">L'adresse email existe deja</span>
-                                <form data-abide action="" method="post"> <!-- PATTERN PAS FAIT -->
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <div class="name-field">
-                                                <label>Identifiant <small>required</small>
-                                                    <input type="text" name="identifiant" placeholder=""  required pattern=""/>
-                                                </label><small class="error">L'identifiant doit etre composer de 8 chiffres</small>
-                                            </div>
-                                        </div>
+                    <div id="inscription-modal" class="reveal-modal tiny" data-reveal aria-labelledby="inscription" aria-hidden="true" role="dialog">
+                        <!-- Page inscription here -->
+                        <h3>Inscription</h3>
+                        <span id="error1" style="display: none; color: red;">L'identifiant existe deja<br /></span>
+                        <span id="error2" style="display: none; color: red;">L'adresse email existe deja</span>
+                        <form data-abide action="" method="post"> <!-- PATTERN PAS FAIT -->
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <div class="name-field">
+                                        <label>Identifiant <small>required</small>
+                                            <input type="text" name="identifiant" placeholder=""  required pattern=""/>
+                                        </label><small class="error">L'identifiant doit etre composer de 8 chiffres</small>
                                     </div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <label>Nom <small>required</small>
-                                                <input type="text" name="nom" placeholder=""  required pattern=""/>
-                                            </label>
-                                            <small class="error">Le nom doit comporter que des lettres (entre 2 et 30)</small>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <label>Prenom <small>required</small>
-                                                <input type="text" name="prenom" placeholder="" required pattern=""/>
-                                            </label>
-                                            <small class="error">Le prenom doit comporter que des lettres (entre 2 et 30)</small>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <label> Email <small>required</small>
-                                                <input type="email" name="email" placeholder="" required pattern="email"/>
-                                            </label>
-                                            <small class="error">Une adresse email est requise</small>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <label> Mot de passe <small>required</small>
-                                                <input id="password" type="password" name="pass" placeholder="" required pattern=""/>
-                                            </label>
-                                            <small class="error">Un mot de passe est requis (entre 6 et 30 caracteres)</small>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <label> Confirmation mot de passe <small>required</small>
-                                                <input type="password" name="pass_verif" placeholder="" required pattern="" data-equalto="password"/>
-                                            </label>
-                                            <small class="error">Les mots de passe ne correspondent pas</small>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-12 columns">
-                                            <label> Departement <small>required</small>
-                                                <select name="formation" >
-                                                    <option value="GEII">Genie Electrique et Informatique</option>
-                                                    <option value="INFO">Informatique</option>
-                                                    <option value="MMI">Metiers du multimedia et de l'Internet</option>
-                                                    <option value="RT">Reseaux et Telecommunication</option>
-                                                </select>
-                                            </label>
-                                            <small class="error">Selectionner un departement</small>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="small-12 small-centered text-center columns">
-                                            <input class="button small secondary" type="submit" name="submit_inscription" value="Valider" />
-                                        </div>
-                                    </div>
-                                </formdata-abide>
-                                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label>Nom <small>required</small>
+                                        <input type="text" name="nom" placeholder=""  required pattern=""/>
+                                    </label>
+                                    <small class="error">Le nom doit comporter que des lettres (entre 2 et 30)</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label>Prenom <small>required</small>
+                                        <input type="text" name="prenom" placeholder="" required pattern=""/>
+                                    </label>
+                                    <small class="error">Le prenom doit comporter que des lettres (entre 2 et 30)</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label> Email <small>required</small>
+                                        <input type="email" name="email" placeholder="" required pattern="email"/>
+                                    </label>
+                                    <small class="error">Une adresse email est requise</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label> Mot de passe <small>required</small>
+                                        <input id="password" type="password" name="pass" placeholder="" required pattern=""/>
+                                    </label>
+                                    <small class="error">Un mot de passe est requis (entre 6 et 30 caracteres)</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label> Confirmation mot de passe <small>required</small>
+                                        <input type="password" name="pass_verif" placeholder="" required pattern="" data-equalto="password"/>
+                                    </label>
+                                    <small class="error">Les mots de passe ne correspondent pas</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label> Departement <small>required</small>
+                                        <select name="formation" >
+                                            <option value="GEII">Genie Electrique et Informatique</option>
+                                            <option value="INFO">Informatique</option>
+                                            <option value="MMI">Metiers du multimedia et de l'Internet</option>
+                                            <option value="RT">Reseaux et Telecommunication</option>
+                                        </select>
+                                    </label>
+                                    <small class="error">Selectionner un departement</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 small-centered text-center columns">
+                                    <input class="button small secondary" type="submit" name="submit_inscription" value="Valider" />
+                                </div>
+                            </div>
+                        </form>
+                        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                    </div>
 
 
               <div id="connexion-modal" class="reveal-modal tiny" data-reveal aria-labelledby="connexion" aria-hidden="true" role="dialog">
@@ -152,9 +152,7 @@
                 </form>
                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
               </div>
-            </ul>
-					</div>
-				</div>
+
 				<!-- fin banniere -->
 
 				<div id="contenu">
@@ -182,7 +180,7 @@
 				<!-- fin footer -->
 
 				<a class="exit-off-canvas"></a>
-			</div>
+
 		</div>
 
 	<script src="foundation/js/vendor/jquery.js"></script>
@@ -200,35 +198,35 @@ if (!empty($_POST['submit_inscription'])) {
 
     $identifiant = $_POST['identifiant'];
     $nom = $_POST['nom'];
-    $prenom = $_POST['prenom']; // AJOUTER ICI HTMLSPECIAL ET COMPAGNIE POUR EVITER INJECTION SQL
+    $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $pass = sha1($_POST['pass']);
 	$departement= $_POST['formation'];
+
     if(formValideInscription($bdd,$identifiant,$email))
     {
 		
-		//BETA//
+		/*//BETA//
 		$requete=$bdd->prepare("Select id_grp from groupe where annee=2 and formation=':departement'");
 		$requete->execute(array(':departement'=>$departement));
 		$resultat = $requete->fetchAll();
 		
-		echo $resultat;
+		echo $resultat;*/
 		
 		////
 
-        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email,id_grp) VALUES(:identifiant, :pass, :nom, :prenom, :email, :id_grp)');
-        
+        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email/*,id_grp*/) VALUES(:identifiant, :pass, :nom, :prenom, :email/*, :id_grp*/)');
+
 		$req->execute(array(
             'identifiant' => $identifiant,
             'pass' => $pass,
             'nom' => $nom,
             'prenom' => $prenom,
-            'email' => $email,
-			'id_grp' => $resultat
-
-			
+            'email' => $email/*,
+			'id_grp' => $resultat*/
         ));
         echo "inscription valide";
+        echo htmlspecialchars($_POST['nom']);
     } // pas besoin de else : deja gerer dans la fonction
 }
 

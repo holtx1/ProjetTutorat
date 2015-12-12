@@ -192,7 +192,7 @@
 </html>
 
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', 'iamthelamb1');
+$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', '');
 
 if (!empty($_POST['submit_inscription'])) {
 

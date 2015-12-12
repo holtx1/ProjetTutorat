@@ -197,7 +197,7 @@
                 patterns: {
                     identifiant: /^([0-9]){8}$/, //CUSTOM PATERN
                     nom_prenom: /^([a-zA-Z ]){2,30}$/,
-                    password: /^[a-zA-Z0-9!@#$%_;:,*?./]{6,30}$/
+                    password: /^[a-zA-Z0-9!@#$%_;:,*?.]{6,30}$/
                 }
             }
         }

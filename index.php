@@ -110,9 +110,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="small-12 columns">
+                                <div class="small-8 columns">
                                     <label> Departement <small>required</small>
-                                        <select name="formation" >
+                                        <select name="formation" required>
+                                            <option value="">Selectionner un departement</option>
                                             <option value="GEII">Genie Electrique et Informatique</option>
                                             <option value="INFO">Informatique</option>
                                             <option value="MMI">Metiers du multimedia et de l'Internet</option>
@@ -120,6 +121,16 @@
                                         </select>
                                     </label>
                                     <small class="error">Selectionner un departement</small>
+                                </div>
+                                <div class="small-4 columns">
+                                    <label> Annee <small>required</small>
+                                        <select name="annee" required>
+                                            <option value="">Annee</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </label>
+                                    <small class="error">Selectionner une annee</small>
                                 </div>
                             </div>
                             <div class="row">

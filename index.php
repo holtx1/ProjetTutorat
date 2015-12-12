@@ -173,7 +173,7 @@
 				<div id="footer">
 					(c) 2015 Groupe tutorat - INF2A. En partenariat avec:
 					<div id="logo_partenaire">
-
+						<img src="Pictures/pulseheberg.png" />		
 					</div>
 
 				</div>
@@ -192,7 +192,7 @@
 </html>
 
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', 'iamthelamb1');
 
 if (!empty($_POST['submit_inscription'])) {
 

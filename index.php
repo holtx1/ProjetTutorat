@@ -57,7 +57,7 @@
                         <span id="error4" style="display: none; color: red;">Le nom doit comporter que des lettres (entre 2 et 30)<br /></span> <!-- Erreurs Verification Serveur -->
                         <span id="error5" style="display: none; color: red;">Le prenom doit comporter que des lettres (entre 2 et 30)<br /></span>
                         <span id="error6" style="display: none; color: red;">Une adresse email valide est requise<br /></span>
-                        <span id="error7" style="display: none; color: red;">Un mot de passe est requis (entre 6 et 30 caracteres)<br /></span>
+                        <span id="error7" style="display: none; color: red;">Un mot de passe est requis (entre 6 et 30 caracteres)<br />Caracteres speciaux acceptes : !@#$%_;:,*?.<br /></span>
                         <span id="error8" style="display: none; color: red;">Les mots de passe ne correspondent pas</span>
                         <form data-abide action="" method="post"> <!-- PATTERN PAS FAIT -->
                             <div class="row">
@@ -197,7 +197,7 @@
                 patterns: {
                     identifiant: /^([0-9]){8}$/, //CUSTOM PATERN
                     nom_prenom: /^([a-zA-Z ]){2,30}$/,
-                    password: /^[a-zA-Z0-9\-,;:!?./§ù*$^£µ%{(@#&\[)}=<>\+\-\*]{6,30}$/
+                    password: /^[a-zA-Z0-9!@#$%_;:,*?./]{6,30}$/
                 }
             }
         }
@@ -284,7 +284,7 @@ function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass
 
     // Verification serveur (au cas ou que l'utilisateur ferait des betises
 
-    if (!preg_match("#([0-9]){8}#", $identifiant))
+    if (!preg_match('/^([0-9]){8}$/', $identifiant))
     {
         ?>
         <script>
@@ -294,7 +294,7 @@ function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass
         <?php
         $valide = false;
     }
-    if (!preg_match("#([a-zA-Z ]){2,30}#", $nom))
+    if (!preg_match('/^([a-zA-Z ]){2,30}$/', $nom))
     {
         ?>
         <script>
@@ -304,7 +304,7 @@ function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass
         $valide = false;
     }
 
-    if (!preg_match("#([a-zA-Z ]){2,30}#", $prenom))
+    if (!preg_match('/^([a-zA-Z ]){2,30}$/', $prenom))
     {
         ?>
         <script>
@@ -322,7 +322,8 @@ function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass
         </script><?php
         $valide = false;
     }
-    if(!preg_match("#^[a-zA-Z0-9\-,;:!?./§ù*$^£µ%{(@#&\[)}=<>\+\-\*]{6,30}$#", $_POST['pass'])) //pass en clair pour verifier son contenu
+    //echo $_POST['pass'];
+    if(!preg_match('/^[a-zA-Z0-9!@#$%_;:,*?.]{6,30}$/', $_POST['pass'])) //pass en clair pour verifier son contenu (je pense)
     {
         ?>
         <script>

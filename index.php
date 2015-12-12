@@ -179,7 +179,7 @@
 				<div id="footer">
 					(c) 2015 Groupe tutorat - INF2A. En partenariat avec:
 					<div id="logo_partenaire">
-
+						<img src="Pictures/pulseheberg.png" />		
 					</div>
 
 				</div>

@@ -42,12 +42,14 @@ CREATE TABLE etudiant (
 CREATE TABLE helper (
   numero_etudiant INT(8) REFERENCES etudiant,
   id_mat INT(4) REFERENCES matiere,
+  commentaire VARCHAR(300),
   PRIMARY KEY(numero_etudiant, id_mat)
 );
 
 CREATE TABLE needhelp (
   numero_etudiant INT(8) REFERENCES etudiant,
   id_mat INT(4) REFERENCES matiere,
+  commentaire VARCHAR(300),
   PRIMARY KEY(numero_etudiant, id_mat)
 );
 
@@ -59,11 +61,11 @@ CREATE TABLE cours(
 
 INSERT INTO privileges (nom_priv) VALUES ('user');
 INSERT INTO privileges (nom_priv) VALUES ('admin');
-INSERT INTO groupe (filiere,annee) VALUES ('GEI',1);
-INSERT INTO groupe (filiere,annee) VALUES ('Informatique',1);
+INSERT INTO groupe (filiere,annee) VALUES ('GEII',1);
+INSERT INTO groupe (filiere,annee) VALUES ('INFO',1);
 INSERT INTO groupe (filiere,annee) VALUES ('MMI',1);
 INSERT INTO groupe (filiere,annee) VALUES ('RT',1);
-INSERT INTO groupe (filiere,annee) VALUES ('GEI',2);
-INSERT INTO groupe (filiere,annee) VALUES ('Informatique',2);
+INSERT INTO groupe (filiere,annee) VALUES ('GEII',2);
+INSERT INTO groupe (filiere,annee) VALUES ('INFO',2);
 INSERT INTO groupe (filiere,annee) VALUES ('MMI',2);
 INSERT INTO groupe (filiere,annee) VALUES ('RT',2);

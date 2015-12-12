@@ -129,24 +129,24 @@
               <div id="connexion-modal" class="reveal-modal tiny" data-reveal aria-labelledby="connexion" aria-hidden="true" role="dialog">
                 <!-- Page connexion here -->
                 <h3>Connexion</h3>
-                <form action="index.php" method="post">
+                <form data-abide action="membre.php" method="post">
                   <div class="row">
                     <div class="small-12 columns">
                       <label>Identifiant
-                        <input type="text" placeholder="" />
+                        <input type="text" name="id"  placeholder="" />
                       </label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="small-12 columns">
                       <label> Mot de passe
-                        <input type="password" placeholder="" />
+                        <input type="password" name="pass" placeholder="" />
                       </label>
                     </div>
                   </div>
                   <div class="row">
                       <div class="small-12 small-centered text-center columns">
-                          <input class="button small secondary" type="submit" value="Valider" />
+                          <input class="button small secondary" type="submit" name="submit_connexion" value="Valider" />
                       </div>
                   </div>
                 </form>
@@ -171,7 +171,7 @@
 
 				<!-- debut footer -->
 				<div id="footer">
-					(c) 2015 Groupe tutorat - INF2A. En partenariat avec:
+					(c) 2015 Groupe tutorat - INF2A -  En partenariat avec:
 					<div id="logo_partenaire">
 						<img src="Pictures/pulseheberg.png" />		
 					</div>
@@ -192,7 +192,7 @@
 </html>
 
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', 'iamthelamb1');
 
 if (!empty($_POST['submit_inscription'])) {
 

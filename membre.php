@@ -38,7 +38,6 @@
 					</div>
 					<div id="navbar">
 						<ul id="navbar_menu_pc" class="menu">
-							<li id="menu_accueil" class="navbar_menu_item"><a href="index.php">Accueil</a></li>
 							<li id="menu_modification" class="navbar_menu_item"><a href="#" data-reveal-id="inscription-modal">Modifier le profil</a></li>
                             <li id="menu_deconnexion" class="navbar_menu_item"><a href="deconnexion.php" data-reveal-id="connexion-modal">Deconnexion</a></li>
                         </ul>
@@ -59,7 +58,7 @@
 
 if(!empty($_POST['submit_connexion'])) {
 	
-	$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', 'iamthelamb1');
+	$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', '');
 
 	//données du formulaire dans variables
 	$pass = sha1($_POST['pass']);
@@ -81,8 +80,8 @@ if(!empty($_POST['submit_connexion'])) {
 	{
 		
 		//mise en place des cookies
-		// setcookie('identifiant',$id,time()+300);
-		// setcookie('mdp',$pass,time()+300);
+		setcookie('identifiant',$id,time()+300);
+		setcookie('mdp',$pass,time()+300);
 
 		echo 'Vous etes connecté :'."<br/>";
 		$req2 = $bdd->prepare('SELECT * from etudiant where numero_etudiant = :id AND mdp = :pass');

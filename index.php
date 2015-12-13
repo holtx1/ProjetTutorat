@@ -116,6 +116,22 @@
                                     <small class="error">Selectionner un departement</small>
                                 </div>
                             </div>
+							<div class="row">
+								<div class="small-6 columns">
+									<label> Âge
+										<input type="text" name="age" placeholder="" required pattern=""/>
+									</label>
+								</div>
+								<div class="small-6 columns">
+									<label> Année <small>required</small>
+										<select name="annee">
+											<option value="1">Première Année</option>
+											<option value="2">Deuxième Année</option>
+										</select>
+									</label>
+									<small class="error">Selectionner votre année</small>
+								</div>
+							</div>
                             <div class="row">
                                 <div class="small-12 small-centered text-center columns">
                                     <input class="button small secondary" type="submit" name="submit_inscription" value="Valider" />
@@ -140,7 +156,7 @@
                   <div class="row">
                     <div class="small-12 columns">
                       <label> Mot de passe
-                        <input id="password" type="password" name="pass" placeholder="" />
+                        <input type="password" name="pass" placeholder="" />
                       </label>
                     </div>
                   </div>
@@ -161,7 +177,7 @@
 					Avec ce site et une fois inscrit, vous pourrez demander de l'aide aux autres étudiants
 					inscrits dans des matières où vous avez des difficultés.<br /> A l'inverse vous pouvez aussi
 					proposer de l'aide dans des matières où vous avez de bonnes capacités.<br />
-					Bonne navigation sur notre site !<br/><br />
+					Bonne navigation sur notre site !<br /><br />
 					NOTE: En vous inscrivant ou connectant sur ce site, vous acceptez l'utilisation de cookies
 					afin d'améliorer votre navigation. Vous accepter aussi de ne pas poster/écrire de contenus
 					inappropriés : dans le cas contraire, votre compte sera définitevement supprimé sans préavis
@@ -194,37 +210,25 @@
 
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', 'iamthelamb1');
-
 if (!empty($_POST['submit_inscription'])) {
-
     $identifiant = $_POST['identifiant'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $pass = sha1($_POST['pass']);
 	$departement= $_POST['formation'];
-
+	
     if(formValideInscription($bdd,$identifiant,$email))
     {
 		
-		/*//BETA//
-		$requete=$bdd->prepare("Select id_grp from groupe where annee=2 and formation=':departement'");
-		$requete->execute(array(':departement'=>$departement));
-		$resultat = $requete->fetchAll();
-		
-		echo $resultat;*/
-		
-		////
-
-        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email/*,id_grp*/) VALUES(:identifiant, :pass, :nom, :prenom, :email/*, :id_grp*/)');
+        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email,id_priv) VALUES(:identifiant, :pass, :nom, :prenom, :email,1)');
 
 		$req->execute(array(
             'identifiant' => $identifiant,
             'pass' => $pass,
             'nom' => $nom,
             'prenom' => $prenom,
-            'email' => $email/*,
-			'id_grp' => $resultat*/
+            'email' => $email
         ));
         echo "inscription valide";
         echo htmlspecialchars($_POST['nom']);

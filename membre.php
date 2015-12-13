@@ -81,8 +81,8 @@ if(!empty($_POST['submit_connexion'])) {
 	{
 		
 		//mise en place des cookies
-		setcookie('identifiant',$id,time()+300);
-		setcookie('mdp',$pass,time()+300);
+		// setcookie('identifiant',$id,time()+300);
+		// setcookie('mdp',$pass,time()+300);
 
 		echo 'Vous etes connecté :'."<br/>";
 		$req2 = $bdd->prepare('SELECT * from etudiant where numero_etudiant = :id AND mdp = :pass');

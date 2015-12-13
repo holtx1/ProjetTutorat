@@ -118,11 +118,6 @@
                             </div>
 							<div class="row">
 								<div class="small-6 columns">
-									<label> Âge
-										<input type="text" name="age" placeholder="" required pattern=""/>
-									</label>
-								</div>
-								<div class="small-6 columns">
 									<label> Année <small>required</small>
 										<select name="annee">
 											<option value="1">Première Année</option>

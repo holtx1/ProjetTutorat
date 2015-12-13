@@ -140,7 +140,7 @@
                   <div class="row">
                     <div class="small-12 columns">
                       <label> Mot de passe
-                        <input type="password" name="pass" placeholder="" />
+                        <input id="password" type="password" name="pass" placeholder="" />
                       </label>
                     </div>
                   </div>
@@ -157,15 +157,16 @@
 
 				<div id="contenu">
 					<h1>Bienvenue sur le projet tutorat</h1>
-					<p>Easy tutorat voici un long texte blabla blablablabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
-					blabla blabla blabla blabla blabla blabla blabla blabla blabla
+					<p>Si vous êtes étudiant à l'IUT de Vélizy, alors ce site est fait pour vous.
+					Avec ce site et une fois inscrit, vous pourrez demander de l'aide aux autres étudiants
+					inscrits dans des matières où vous avez des difficultés.<br /> A l'inverse vous pouvez aussi
+					proposer de l'aide dans des matières où vous avez de bonnes capacités.<br />
+					Bonne navigation sur notre site !<br/><br />
+					NOTE: En vous inscrivant ou connectant sur ce site, vous acceptez l'utilisation de cookies
+					afin d'améliorer votre navigation. Vous accepter aussi de ne pas poster/écrire de contenus
+					inappropriés : dans le cas contraire, votre compte sera définitevement supprimé sans préavis
+					par nos administrateurs.
+
 					</p>
 				</div>
 

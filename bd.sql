@@ -30,7 +30,7 @@ CREATE TABLE groupe (
 
 CREATE TABLE etudiant (
   numero_etudiant INT(8) PRIMARY KEY,
-  mdp VARCHAR(25) NOT NULL,
+  mdp VARCHAR(50) NOT NULL,
   nom VARCHAR(30) NOT NULL,
   prenom VARCHAR(30) NOT NULL,
   age INT(3),

@@ -63,6 +63,17 @@ body {
 	transition: background .5s;
 }
 
+#menu_modification:hover{
+	background: #80F880;
+	transition: background .5s;
+}
+
+#menu_deconnexion:hover{
+	background: #970000;
+	transition: background .5s;
+}
+
+
 #contenu{
 	text-align:justify;
 }

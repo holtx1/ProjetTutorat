@@ -52,13 +52,19 @@
                         <!-- Page inscription here -->
                         <h3>Inscription</h3>
                         <span id="error1" style="display: none; color: red;">L'identifiant existe deja<br /></span>
-                        <span id="error2" style="display: none; color: red;">L'adresse email existe deja</span>
+                        <span id="error2" style="display: none; color: red;">L'adresse email existe deja<br /></span>
+                        <span id="error3" style="display: none; color: red;">L'identifiant doit etre composer de 8 chiffres<br /></span>
+                        <span id="error4" style="display: none; color: red;">Le nom doit comporter que des lettres (entre 2 et 30)<br /></span> <!-- Erreurs Verification Serveur -->
+                        <span id="error5" style="display: none; color: red;">Le prenom doit comporter que des lettres (entre 2 et 30)<br /></span>
+                        <span id="error6" style="display: none; color: red;">Une adresse email valide est requise<br /></span>
+                        <span id="error7" style="display: none; color: red;">Un mot de passe est requis (entre 6 et 30 caracteres)<br />Caracteres speciaux acceptes : !@#$%_;:,*?.<br /></span>
+                        <span id="error8" style="display: none; color: red;">Les mots de passe ne correspondent pas</span>
                         <form data-abide action="" method="post"> <!-- PATTERN PAS FAIT -->
                             <div class="row">
                                 <div class="small-12 columns">
                                     <div class="name-field">
                                         <label>Identifiant <small>required</small>
-                                            <input type="text" name="identifiant" placeholder=""  required pattern=""/>
+                                            <input type="text" name="identifiant" placeholder=""  required pattern="identifiant"/>
                                         </label><small class="error">L'identifiant doit etre composer de 8 chiffres</small>
                                     </div>
                                 </div>
@@ -66,7 +72,7 @@
                             <div class="row">
                                 <div class="small-12 columns">
                                     <label>Nom <small>required</small>
-                                        <input type="text" name="nom" placeholder=""  required pattern=""/>
+                                        <input type="text" name="nom" placeholder=""  required pattern="nom_prenom"/>
                                     </label>
                                     <small class="error">Le nom doit comporter que des lettres (entre 2 et 30)</small>
                                 </div>
@@ -74,7 +80,7 @@
                             <div class="row">
                                 <div class="small-12 columns">
                                     <label>Prenom <small>required</small>
-                                        <input type="text" name="prenom" placeholder="" required pattern=""/>
+                                        <input type="text" name="prenom" placeholder="" required pattern="nom_prenom"/>
                                     </label>
                                     <small class="error">Le prenom doit comporter que des lettres (entre 2 et 30)</small>
                                 </div>
@@ -84,13 +90,13 @@
                                     <label> Email <small>required</small>
                                         <input type="email" name="email" placeholder="" required pattern="email"/>
                                     </label>
-                                    <small class="error">Une adresse email est requise</small>
+                                    <small class="error">Une adresse email est valide requise</small>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="small-12 columns">
                                     <label> Mot de passe <small>required</small>
-                                        <input id="password" type="password" name="pass" placeholder="" required pattern=""/>
+                                        <input id="password" type="password" name="pass" placeholder="" required pattern="password"/>
                                     </label>
                                     <small class="error">Un mot de passe est requis (entre 6 et 30 caracteres)</small>
                                 </div>
@@ -98,15 +104,16 @@
                             <div class="row">
                                 <div class="small-12 columns">
                                     <label> Confirmation mot de passe <small>required</small>
-                                        <input type="password" name="pass_verif" placeholder="" required pattern="" data-equalto="password"/>
+                                        <input type="password" name="pass_verif" placeholder="" required pattern="password" data-equalto="password" />
                                     </label>
                                     <small class="error">Les mots de passe ne correspondent pas</small>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="small-12 columns">
+                                <div class="small-8 columns">
                                     <label> Departement <small>required</small>
-                                        <select name="formation" >
+                                        <select name="formation" required>
+                                            <option value="">Selectionner un departement</option>
                                             <option value="GEII">Genie Electrique et Informatique</option>
                                             <option value="INFO">Informatique</option>
                                             <option value="MMI">Metiers du multimedia et de l'Internet</option>
@@ -115,18 +122,17 @@
                                     </label>
                                     <small class="error">Selectionner un departement</small>
                                 </div>
+                                <div class="small-4 columns">
+                                    <label> Annee <small>required</small>
+                                        <select name="annee" required>
+                                            <option value="">Annee</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+                                    </label>
+                                    <small class="error">Selectionner une annee</small>
+                                </div>
                             </div>
-							<div class="row">
-								<div class="small-6 columns">
-									<label> Année <small>required</small>
-										<select name="annee">
-											<option value="1">Première Année</option>
-											<option value="2">Deuxième Année</option>
-										</select>
-									</label>
-									<small class="error">Selectionner votre année</small>
-								</div>
-							</div>
                             <div class="row">
                                 <div class="small-12 small-centered text-center columns">
                                     <input class="button small secondary" type="submit" name="submit_inscription" value="Valider" />
@@ -198,22 +204,32 @@
 	<script src="foundation/js/vendor/jquery.js"></script>
 	<script src="foundation/js/foundation.min.js"></script>
 	<script>
-        $(document).foundation();
+        $(document).foundation({
+            abide: {
+                patterns: {
+                    identifiant: /^([0-9]){8}$/, //CUSTOM PATERN
+                    nom_prenom: /^([a-zA-Z]){2,30}$/,
+                    password: /^[a-zA-Z0-9!@#$%_;:,*?.]{6,30}$/
+                }
+            }
+        }
+        );
     </script>
 	</body>
 </html>
 
 <?php
-$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', '');
+$bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', 'iamthelamb1');
 if (!empty($_POST['submit_inscription'])) {
     $identifiant = $_POST['identifiant'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $pass = sha1($_POST['pass']);
-	$departement= $_POST['formation'];
+	$pass_verif = sha1($_POST['pass_verif']);
+	$departement= htmlspecialchars($_POST['formation']);
 	
-    if(formValideInscription($bdd,$identifiant,$email))
+    if(formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass_verif))
     {
 		
         $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email,id_priv) VALUES(:identifiant, :pass, :nom, :prenom, :email,1)');
@@ -231,7 +247,7 @@ if (!empty($_POST['submit_inscription'])) {
 }
 
 
-function formValideInscription($bdd,$identifiant,$email){
+function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass_verif){
     $valide = true;
 
     //Requete
@@ -265,6 +281,67 @@ function formValideInscription($bdd,$identifiant,$email){
         </script><?php
         $valide = false;
     }
+
+    // Verification serveur (au cas ou que l'utilisateur ferait des betises
+
+    if (!preg_match('/^([0-9]){8}$/', $identifiant))
+    {
+        ?>
+        <script>
+            $('#inscription-modal').foundation('reveal', 'open');
+            document.getElementById('error3').style.display = 'inline';
+        </script>
+        <?php
+        $valide = false;
+    }
+    if (!preg_match('/^([a-zA-Z ]){2,30}$/', $nom))
+    {
+        ?>
+        <script>
+            $('#inscription-modal').foundation('reveal', 'open');
+            document.getElementById('error4').style.display = 'inline';
+        </script><?php
+        $valide = false;
+    }
+
+    if (!preg_match('/^([a-zA-Z ]){2,30}$/', $prenom))
+    {
+        ?>
+        <script>
+            $('#inscription-modal').foundation('reveal', 'open');
+            document.getElementById('error5').style.display = 'inline';
+        </script><?php
+        $valide = false;
+    }
+
+    if (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
+        ?>
+        <script>
+            $('#inscription-modal').foundation('reveal', 'open');
+            document.getElementById('error6').style.display = 'inline';
+        </script><?php
+        $valide = false;
+    }
+    //echo $_POST['pass'];
+    if(!preg_match('/^[a-zA-Z0-9!@#$%_;:,*?.]{6,30}$/', $_POST['pass'])) //pass en clair pour verifier son contenu (je pense)
+    {
+        ?>
+        <script>
+            $('#inscription-modal').foundation('reveal', 'open');
+            document.getElementById('error7').style.display = 'inline';
+        </script><?php
+        $valide = false;
+    }
+    if($pass != $pass_verif)
+    {
+        ?>
+        <script>
+            $('#inscription-modal').foundation('reveal', 'open');
+            document.getElementById('error8').style.display = 'inline';
+        </script><?php
+        $valide = false;
+    }
+
     return $valide;
 }
 ?>

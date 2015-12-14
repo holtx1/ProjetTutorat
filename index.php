@@ -1,3 +1,7 @@
+<?php
+    ob_start(); //Permet de mettre le header n'importe ou dans le code : sinon doit se placer avant le code html
+    session_start();
+?>
 <!--<?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
  <xsl:output encoding="utf-8" method="html"/>
@@ -65,7 +69,8 @@
                                     <div class="name-field">
                                         <label>Identifiant <small>required</small>
                                             <input type="text" name="identifiant" placeholder=""  required pattern="identifiant"/>
-                                        </label><small class="error">L'identifiant doit etre composer de 8 chiffres</small>
+                                        </label>
+                                        <small class="error">L'identifiant doit etre composer de 8 chiffres</small>
                                     </div>
                                 </div>
                             </div>
@@ -143,32 +148,37 @@
                     </div>
 
 
-              <div id="connexion-modal" class="reveal-modal tiny" data-reveal aria-labelledby="connexion" aria-hidden="true" role="dialog">
-                <!-- Page connexion here -->
-                <h3>Connexion</h3>
-                <form data-abide action="membre.php" method="post">
-                  <div class="row">
-                    <div class="small-12 columns">
-                      <label>Identifiant
-                        <input type="text" name="id"  placeholder="" />
-                      </label>
+                    <div id="connexion-modal" class="reveal-modal tiny" data-reveal aria-labelledby="connexion" aria-hidden="true" role="dialog">
+                        <!-- Page connexion here -->
+                        <h3>Connexion</h3>
+                        <span id="error9" style="display: none; color: red;">Identifiant ou mot de passe introuvable<br /></span>
+                        <span id="error10" style="display: none; color: red;">L'identifiant doit etre composer de 8 chiffres<br /></span>
+                        <span id="error11" style="display: none; color: red;">Un mot de passe est requis (entre 6 et 30 caracteres)<br />Caracteres speciaux acceptes : !@#$%_;:,*?.</span>
+                        <form data-abide action="" method="post">
+                             <div class="row">
+                                <div class="small-12 columns">
+                                    <label>Identifiant
+                                        <input type="text" name="id"  placeholder=""required pattern="identifiant"/>
+                                    </label>
+                                    <small class="error">L'identifiant doit etre composer de 8 chiffres</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <label> Mot de passe
+                                        <input type="password" name="passconnexion" placeholder="" required pattern="password"/>
+                                    </label>
+                                    <small class="error">Un mot de passe est requis (entre 6 et 30 caracteres)</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 small-centered text-center columns">
+                                    <input class="button small secondary" type="submit" name="submit_connexion" value="Valider" />
+                                </div>
+                            </div>
+                        </form>
+                        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="small-12 columns">
-                      <label> Mot de passe
-                        <input type="password" name="pass" placeholder="" />
-                      </label>
-                    </div>
-                  </div>
-                  <div class="row">
-                      <div class="small-12 small-centered text-center columns">
-                          <input class="button small secondary" type="submit" name="submit_connexion" value="Valider" />
-                      </div>
-                  </div>
-                </form>
-                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-              </div>
 
 				<!-- fin banniere -->
 
@@ -187,15 +197,7 @@
 					</p>
 				</div>
 
-				<!-- debut footer -->
-				<div id="footer">
-					(c) 2015 Groupe tutorat - INF2A -  En partenariat avec:
-					<div id="logo_partenaire">
-						<img src="Pictures/pulseheberg.png" />		
-					</div>
-
-				</div>
-				<!-- fin footer -->
+			    <?php include 'includes/footer.php' ?>
 
 				<a class="exit-off-canvas"></a>
 
@@ -208,7 +210,7 @@
             abide: {
                 patterns: {
                     identifiant: /^([0-9]){8}$/, //CUSTOM PATERN
-                    nom_prenom: /^([a-zA-Z]){2,30}$/,
+                    nom_prenom: /^([a-zA-Z ]){2,30}$/,
                     password: /^[a-zA-Z0-9!@#$%_;:,*?.]{6,30}$/
                 }
             }
@@ -220,19 +222,24 @@
 
 <?php
 $bdd = new PDO('mysql:host=localhost;dbname=projetbase;charset=utf8', 'root', '');
-if (!empty($_POST['submit_inscription'])) {
-    $identifiant = $_POST['identifiant'];
-    $nom = $_POST['nom'];
-    $prenom = $_POST['prenom'];
-    $email = $_POST['email'];
+
+//Inscription
+
+if (isset($_POST['submit_inscription'])) {
+    echo "Inscription submit";
+    $identifiant = htmlspecialchars($_POST['identifiant']);
+    $nom = htmlspecialchars($_POST['nom']);
+    $prenom = htmlspecialchars($_POST['prenom']);
+    $email = htmlspecialchars($_POST['email']);
     $pass = sha1($_POST['pass']);
-	$pass_verif = sha1($_POST['pass_verif']);
-	$departement= htmlspecialchars($_POST['formation']);
-	
+    $pass_verif = sha1($_POST['pass_verif']);
+    $departement= htmlspecialchars($_POST['formation']);
+    $annee = htmlspecialchars($_POST['annee']);
+
     if(formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass_verif))
     {
-		
-        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email,id_priv) VALUES(:identifiant, :pass, :nom, :prenom, :email,1)');
+
+        $req = $bdd->prepare('INSERT INTO etudiant(numero_etudiant, mdp, nom, prenom, email) VALUES(:identifiant, :pass, :nom, :prenom, :email)');
 
 		$req->execute(array(
             'identifiant' => $identifiant,
@@ -246,6 +253,39 @@ if (!empty($_POST['submit_inscription'])) {
     } // pas besoin de else : deja gerer dans la fonction
 }
 
+// Connexion
+
+if(isset($_POST['submit_connexion'])) {
+    echo "Connexion submit";
+    //données du formulaire dans variables
+    $passconnexion = sha1($_POST['passconnexion']);
+    $id = htmlspecialchars($_POST['id']);
+
+    if(formValideConnexion($id))
+    {
+        //recuperation du resultat
+        $req = $bdd->prepare('SELECT numero_etudiant from etudiant where numero_etudiant = :id AND mdp = :pass');
+        $req->execute(array(
+            'id' => $id,
+            'pass' => $passconnexion));
+        $resultat = $req->fetch();
+
+        if($resultat == null){//données invalides
+            ?>
+            <script>
+                $('#connexion-modal').foundation('reveal', 'open');
+                document.getElementById('error9').style.display = 'inline';
+            </script><?php
+        }
+        else//Utilisateur trouvé
+        {
+            $_SESSION['login'] = $id;
+            $_SESSION['pass'] = $passconnexion;
+            header('Location: membre.php?id='.$id.'');
+            ob_end_flush();
+        }
+    }
+}
 
 function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass_verif){
     $valide = true;
@@ -322,7 +362,7 @@ function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass
         </script><?php
         $valide = false;
     }
-    //echo $_POST['pass'];
+
     if(!preg_match('/^[a-zA-Z0-9!@#$%_;:,*?.]{6,30}$/', $_POST['pass'])) //pass en clair pour verifier son contenu (je pense)
     {
         ?>
@@ -342,6 +382,32 @@ function formValideInscription($bdd,$identifiant,$email,$nom,$prenom,$pass,$pass
         $valide = false;
     }
 
+    return $valide;
+}
+
+function formValideConnexion($identifiant)
+{
+    $valide = true;
+
+    if (!preg_match('/^([0-9]){8}$/', $identifiant))
+    {
+        ?>
+        <script>
+            $('#connexion-modal').foundation('reveal', 'open');
+            document.getElementById('error10').style.display = 'inline';
+        </script>
+        <?php
+        $valide = false;
+    }
+    if(!preg_match('/^[a-zA-Z0-9!@#$%_;:,*?.]{6,30}$/', $_POST['passconnexion'])) //pass en clair pour verifier son contenu (je pense)
+    {
+        ?>
+        <script>
+            $('#connexion-modal').foundation('reveal', 'open');
+            document.getElementById('error11').style.display = 'inline';
+        </script><?php
+        $valide = false;
+    }
     return $valide;
 }
 ?>
